@@ -50,9 +50,10 @@ def get_page(URL):
 if __name__ == "__main__":
     print("Hello there human!\nI am here to classify your webpage\n" +
           "I am so incredibly efficient at it, that you would be incredibly amazed.")
-    #URL = sys.argv[1]
 
-    page = get_page("http://www.agrimoney.com/news/grain-futures-tumble-despite-us-stocks-figures-falling-short-of-forecasts--10026.html")
+    URL = sys.argv[1]
+
+    page = get_page(URL)
 
     prepared_text = prepare_text_for_analysis(page)
 
