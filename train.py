@@ -46,6 +46,7 @@ def tf_idf(docs, filename, vocabulary={}):
 ##
 #
 #  Непосредсвенное получение данных и обучение модели.
+#  Кэширование "словарного запаса" и классификтора для использовния непосредтсвенно в вебКлассификаторе.
 #
 ##
 if __name__ == '__main__':
@@ -72,7 +73,9 @@ if __name__ == '__main__':
     test_X, vocab = tf_idf(test_docs, "test_vector", vocab)
     test_Y = MultiLabelBinarizer().fit_transform(test_classes)
 
-    joblib.dump(vocab, "classify_cache/vocab", compress=9)
+    if vocab != {}:
+        joblib.dump(vocab, "classify_cache/vocab", compress=9)
+
     print("--- Training ---")
 
     classifier = OneVsRestClassifier(LinearSVC())
